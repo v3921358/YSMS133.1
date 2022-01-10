@@ -1,0 +1,18 @@
+function start() {
+	var cal = java.util.Calendar.getInstance();
+	var hour = cal.get(java.util.Calendar.HOUR);
+	var min = cal.get(java.util.Calendar.MINUTE);
+	var sec = cal.get(java.util.Calendar.SECOND);
+	var weekday = cal.get(java.util.Calendar.DAY_OF_WEEK);
+	var month = cal.get(java.util.Calendar.MONTH) + 1; //获得月份
+	var day = cal.get(java.util.Calendar.DATE); //获取日
+	weekday-=1;
+	scheduleNew();
+    if(month == 1) {
+	  if (day >= 1 && day <= 30) {
+		  if (hour == 1 ) {
+			  if (min == 25) {
+				  em.broadcastServerMsg(5121027,"圣诞老人开服红包开抢啦，只有5分钟时间，速速前往领取！",true);
+		}
+
+	} 

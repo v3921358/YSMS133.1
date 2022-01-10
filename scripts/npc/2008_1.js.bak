@@ -1,0 +1,53 @@
+var aa ="#fUI/UIWindow2.img/Quest/quest_info/summary_icon/summary#";
+
+function start() {
+   if (
+cm.gainItem(2430154, 1)
+cm.haveItem(2430154) < 1) {
+	cm.playerMessage(1, "  - Gm提示您：\r\n\r\n请先打开背包，查看消耗栏的新手认证书.\r\n");
+	cm.dispose();
+   } else if (cm.getBossLog("新手1", 1) < 1) {
+        cm.playerMessage(1, "  - Gm提示您：\r\n\r\n您还没有查看新手说明第一条\r\n\r\n请打开背包消耗栏查看一下 \r\n【新手认证书】\r\n认真看完第 1-8 项说明。才可以领取【新手玩家奖励】\r\nPS:不看完新手说明书是无法出去，请看完新手说明书。看完后您才能充分的对本冒险岛世界的了解，对于新手来说的您很有帮助的。请勿丢弃该说明书，丢弃后是无法再次获得。这样您就不可以领取\r\n【200级以后每日福利】");
+        cm.dispose(); 
+   } else {
+	cm.gainNX(1, 1);
+	cm.gainItem(2431404, 1);
+	cm.gainItem(2431092, 1);
+	//cm.gainItem(2430868, 1);
+	cm.gainItem(2431855, 1);
+	cm.gainItem(5211060, 1, 2 * 60 * 60 * 1000);// 三倍经验
+	cm.gainItem(5360015, 1, 2 * 60 * 60 * 1000);// 双爆
+	cm.gainItem(1112164, 1, 2 * 60 * 60 * 1000);//夏日甜心名片戒指 24小时
+	cm.gainItem(1112276, 1, 2 * 60 * 60 * 1000);//夏日甜心聊天戒指 24小时
+	cm.gainItem(1102723, 1, 2 * 60 * 60 * 1000);//  光明天使羽翼
+	cm.gainItem(1112918, 1, 1);// 回归戒指 X1 24小时
+//	cm.gainItem(1142593, 1);
+	var ii = cm.getItemInfo();					
+	var toDrop = ii.randomizeStats(ii.getEquipById(1142806)).copy(); // 生成一个Equip类             
+	toDrop.setStr(20); //装备力量
+	toDrop.setDex(20); //装备敏捷
+	toDrop.setInt(20); //装备智力
+	toDrop.setLuk(20); //装备运气	
+	toDrop.setHp(200);
+	toDrop.setMp(200);
+	toDrop.setMatk(20); //魔法攻击
+	toDrop.setWatk(20); //物理攻击 
+	//toDrop.setWdef(100);//物理防御
+	//toDrop.setMdef(100);//魔法防御
+	//toDrop.setAcc(20);//命中
+	//toDrop.setAvoid(20);//回避
+	//toDrop.setSpeed(20);//移动速度
+	//toDrop.setJump(20);//跳跃
+	toDrop.setEnhance(25);
+	toDrop.setOwner("GM赠送");
+	cm.addFromDrop(cm.getC(), toDrop, false);
+	//cm.gainItem(2430865, 1, 2 * 60 * 60 * 1000);
+	//cm.gainItem(2431855, 1);
+	cm.gainMeso(100000);
+	cm.gainNX(1, 1);
+	cm.warp(50000);
+	cm.sendOk("#d欢迎来到 #r点点冒险岛#k #d,先来大概了解一下本服特色：\r\n\r\n#b· 本服为仿官方模式  经验30倍  金币20倍  爆率10倍\r\n· 主菜单在拍卖(商城按钮),提供各种便捷服务\r\n· 拍卖处的游戏商店分类很多种，详情请看说明。\r\n· 各种特色副本，组队任务，以及BOSS副本。\r\n· 为帮助您能顺利成长,我们准备了新手礼包给您\r\n· 最后祝您游戏愉快，不懂可以看背包里的 #r新手认证书#k#b。\r\n· 如果真心不会请加我们的玩家交流群：#e#r198910087#n#k");
+	cm.worldSpouseMessage(0x12,"『新手驾到』：恭喜玩家 "+ cm.getChar().getName() +" 来到了点点冒险岛。热烈祝贺他(她)吧。");
+	cm.dispose();
+   }
+}

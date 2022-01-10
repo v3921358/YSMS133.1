@@ -1,0 +1,10 @@
+/* 
+ * 2430580 - ‘¬¡¡∆Ô≥Ë
+ */
+var period = 90;
+var mountSkillId = 80001246;
+
+function start() {
+    im.giveMountSkill(im.getItem(), mountSkillId, period);
+    im.dispose();
+}

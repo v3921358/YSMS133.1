@@ -1,0 +1,93 @@
+var status = 0;
+var typed = 0;
+var random1 = java.lang.Math.floor(Math.random() * 1000 + 1);
+var random2 = java.lang.Math.floor(Math.random() * 3000 + 1);
+var zhongjiebi = 4000463;	// 中介币(国亲币)
+var huozhong = 4033356;		//正义火种1
+
+function start() {
+    status = -1;
+    action(1, 0, 0);
+}
+
+function action(mode, type, selection) {
+    if (mode == -1) {
+        cm.dispose();
+    } else {
+        if (mode == 0 && status == 0) {
+            cm.dispose();
+            return;
+        }
+        if (mode == 1)
+            status++;
+        else
+            status--;
+        if (status == 0) {
+            cm.sendSimple("亲爱的#r#h ##k您好，我是伤害上限突破系统:\r\n#rVIP会员在随身服务中使用【会员破功】要优惠很多很多哦！#k\r\n#b追加伤害需要使用的道具是:当前职业对应的武器 #k\r\n#b提供【点卷与中介破功】方式给任何武器追加伤害上限 \r\n#b追加伤害之前，必须把需要破功的武器装备在人物上面#k\r\n#r注：每把武器最多追加21亿伤害,超过后不予计算.\r\n#e#b请选择：#k\r\n#L3#【武器破功】每次追加100W伤害上限");
+        } else if (status == 1) {
+            if (selection == 1) {
+                cm.sendOk("亲爱的#r#h ##k您好,我是伤害上限突破系统简介:\r\n  使用道具: 当前职业对应等级武器 \r\n  使用点卷: 任何武器都可以伤害上限突破 \r\n\r\n\r\n\r\n#r注：每把武器最多追加1亿伤害,超过后不予计算.");
+                cm.dispose();
+            } else if (selection == 2) {
+                if (cm.getBossLog("火种突破", 5) <= 10000000) {
+                    if (cm.haveItem(huozhong, 1)) {
+                        if (cm.changeLimitBreak(random1)) {
+                            cm.setBossLog("火种突破", 1, random1);
+                            cm.gainItem(huozhong, -5);
+                            cm.sendOk("#b伤害上限突破成功.\r\n\r\n本次追加伤害为：#r" + random1 + "#b.");
+                            cm.worldSpouseMessage(0x20, "[伤害突破] 玩家 " + cm.getChar().getName() + " 使用 正义火种1 让武器伤害上限突破成功 本次追加 " + random1 + " 伤害值 。");
+                        } else {
+                            cm.sendOk("#b突破失败.\r\n系统为检测到角色身上装备武器.");
+                        }
+                        cm.dispose();
+                    } else {
+                        cm.sendOk("#b突破失败.\r\n需要 5个 【#z4033356#】 才可以突破.");
+                        cm.dispose();
+                    }
+                } else {
+                    cm.sendOk("#b突破失败.\r\n使用道具追加伤害上限最高额外追加到 1000万伤害.");
+                    cm.dispose();
+                }
+            } else if (selection == 3) {
+            	cm.sendOk("每次可给武器追加100万伤害值，请在下面选择消费方式：\r\n\r\n#b#L0#使用30万抵用券给武器追加100万伤害\r\n#L1#使用150个#z" + zhongjiebi + "#给武器追加100万伤害#l");
+            }
+        } else if (status == 2) {
+        	if (cm.getBossLog("抵用卷突破1", 1) <= 1000) {
+	        	if (selection == 0) { // 使用点券
+	        		if (cm.getNX(2) < 300000) {
+	        			cm.sendOk("抵用券不足30万，请努力赚购后再来吧。");
+	        			cm.dispose();
+	        		} else {
+		    			if (cm.changeLimitBreak(1000000)) {
+		                	cm.setBossLog("抵用卷突破1", 1);
+		                	cm.gainNX(2, -300000);
+                        	cm.sendOk("#b伤害上限突破成功.\r\n\r\n本次追加伤害为：#r1000000#b.");
+                        	cm.worldSpouseMessage(0x20, "[伤害突破] 玩家 " + cm.getChar().getName() + " 使用 抵用卷 让武器伤害上限突破成功 本次追加 1000000 伤害值。");
+		    			} else {
+		    				cm.sendOk("#b突破失败.\r\n系统未检测到角色身上装备武器.");
+		    				cm.dispose();
+		    			}
+	        		}
+	        	} else if (selection == 1) {
+	        		if (!cm.haveItem(zhongjiebi, 150)) {
+	        			cm.sendOk("突破失败，#r#z" + zhongjiebi + "##k不足150个。");
+	        			cm.dispose();
+	        		} else {
+		    			if (cm.changeLimitBreak(1000000)) {
+		                	cm.setBossLog("中介币突破1", 1);
+		                	cm.gainItem(zhongjiebi, -150);
+                        	cm.sendOk("#b伤害上限突破成功.\r\n\r\n本次追加伤害为：#r1000000#b.");
+                        	cm.worldSpouseMessage(0x20, "[伤害突破] 玩家 " + cm.getChar().getName() + " 使用 中介币 让武器伤害上限突破成功 本次追加 1000000 伤害值。");
+		    			} else {
+		    				cm.sendOk("#b突破失败.\r\n系统未检测到角色身上装备武器.");
+		    				cm.dispose();
+		    			}
+	        		}
+	        	}
+        	} else {
+                cm.sendOk("#b突破失败.\r\n武器最高额外突破21E伤害.");
+                cm.dispose();
+        	}
+        }
+    }
+}

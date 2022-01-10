@@ -1,0 +1,259 @@
+var status = 0;
+var z = "#fUI/UIWindow/Quest/icon5/1#";//"+z+"//美化
+var PayLogPoints = 0;
+var yz = new Array(3010947,3010948,3015006,3015010,3010837,3010837,3010838,3010854,3010815,3010804,3010696);
+var chance = Math.floor(Math.random()*yz.length);
+
+function start() {
+    status = -1;
+    action(1, 0, 0);
+}
+
+function action(mode, type, selection) {
+    if (status == 0 && mode == 0) {
+        im.dispose();
+        return;
+    }
+    if (mode == 1) {
+        status++;
+    } else {
+        status--;
+    }
+    if (status == 0) {
+		var selStr = "#e#r#fEffect/ItemEff/1112811/0/0##fEffect/ItemEff/1112811/0/0##n#k#fEffect/ItemEff/1112811/0/0##n#k#fEffect/ItemEff/1112811/0/0##n#k#fEffect/ItemEff/1112811/0/0##n#k#fEffect/ItemEff/1112811/0/0##n#k#fEffect/ItemEff/1112811/0/0##n#k#fEffect/ItemEff/1112811/0/0##n#k#fEffect/ItemEff/1112811/0/0##n#k#fEffect/ItemEff/1112811/0/0##n#k#fEffect/ItemEff/1112811/0/0##n#k#fEffect/ItemEff/1112811/0/0##n#k#fEffect/ItemEff/1112811/0/0##n#k#fEffect/ItemEff/1112811/0/0##n#k#fEffect/ItemEff/1112811/0/0##n#k#fEffect/ItemEff/1112811/0/0##n#k#fEffect/ItemEff/1112811/0/0##n#k#fEffect/ItemEff/1112811/0/0##n#k#fEffect/ItemEff/1112811/0/0##n#k\r\n\r\n- #e#r随身npc#k#n\r\n";
+		selStr += "#d欢迎使用随身特权,本次给您带来快捷服务：#k\r\n\r\n";
+		//selStr += "#r#L0#"+z+" 每日工资#l  #L1#"+z+" 免费点卷#l  #l\r\n";#L9#"+z+" 每日魔方#l #L5#"+z+" 领兑换币#l 
+		selStr += "#r#L33#"+z+" 会员喊话#l  #L6#"+z+" 自选发型#l  #L10#"+z+" 每日寻宝#l\r\n";
+		selStr += "#L7#"+z+" 三倍经验#l  #L8#"+z+" 领取双爆#l  #L18#"+z+" 一键清理\r\n";
+		selStr += "#L3#"+z+" 换取戒指#l  #L11#"+z+" 租借椅子#l  #L13#"+z+" 高级回收#l\r\n";
+		selStr += "#L4#"+z+" BOSS重置#l  #L14#"+z+" 副本重置#l  #L17#"+z+" 超值福利#l\r\n";
+		selStr += "#L2#"+z+" 加HP上限#l  #L19#"+z+" 加MP上限#l  #L20#"+z+" 高人一等#l\r\n";
+		selStr += "#L21#"+z+" 点卷商店#l  #L22#"+z+" 现金商店#l  #L23#"+z+" 八折破功#l\r\n";
+		//selStr += "#r#L15#"+z+" 普通理财功能#l    #L16#"+z+" 高级理财功能#l\r\n";
+		//selStr += "\r\n ";
+		selStr += "\r\n\r\n#fEffect/ItemEff/1112811/0/0##fEffect/ItemEff/1112811/0/0##n#k#fEffect/ItemEff/1112811/0/0##n#k#fEffect/ItemEff/1112811/0/0##n#k#fEffect/ItemEff/1112811/0/0##n#k#fEffect/ItemEff/1112811/0/0##n#k#fEffect/ItemEff/1112811/0/0##n#k#fEffect/ItemEff/1112811/0/0##n#k#fEffect/ItemEff/1112811/0/0##n#k#fEffect/ItemEff/1112811/0/0##n#k#fEffect/ItemEff/1112811/0/0##n#k#fEffect/ItemEff/1112811/0/0##n#k#fEffect/ItemEff/1112811/0/0##n#k#fEffect/ItemEff/1112811/0/0##n#k#fEffect/ItemEff/1112811/0/0##n#k#fEffect/ItemEff/1112811/0/0##n#k#fEffect/ItemEff/1112811/0/0##n#k#fEffect/ItemEff/1112811/0/0##n#k#fEffect/ItemEff/1112811/0/0##n#k";
+        im.sendSimple(selStr);
+    } else if (status == 1) {
+        switch (selection) {
+	case 12:
+		im.dispose();
+		im.openNpc(9900003, 10);
+		break;
+	case 4:
+		im.dispose();
+		im.openNpc(9900004, 4);
+		break;
+	case 14:
+		im.dispose();
+		im.openNpc(9900004, 5);
+		break;
+	case 13:
+		im.dispose();
+		im.openNpc(9310382, 12);
+		break;
+	case 17:
+		im.dispose();
+		im.openNpc(9310382, 15);
+		break;
+	case 18:
+		im.dispose();
+		im.openNpc(9310382, 17);
+		break;
+	case 19:
+		im.dispose();
+		im.openNpc(9310382, 88);
+		break;
+	case 21:
+		im.dispose();
+		im.openNpc(9310382, 100);
+		break;
+	case 22:
+		im.dispose();
+		im.openNpc(9310382, 200);
+		break;
+	case 23:
+		im.dispose();
+		im.openNpc(9310382, 99);
+		break;
+	case 20:
+		if (im.getBossLog("高人") < 1) { //工资
+		im.gainItem(2003518, 10);
+		im.gainItem(2003519, 5);
+		im.setBossLog("高人");
+		im.sendOk("恭喜您领取VIP服务的雪花变大药水.");
+		im.worldSpouseMessage(0x24,"『随身服务』 ：玩家 "+ im.getChar().getName() +" 在随身NPC里领取每日巨人秘药。");
+		im.dispose();
+       } else {
+        im.sendOk("失败：\r\n\r\n#r1). 您已经领取过，请明日再领。");
+		im.dispose();
+            }
+		break;
+	case 15:
+	 if (im.getBossLog("理财十天", 1) >= 1) { //工资
+		im.dispose();
+		im.openNpc(9310382, 13);
+		} else {
+                im.sendOk("失败：\r\n\r\n#r1). 您是高级理财，请使用高级理财服务。");
+				im.dispose();
+            }
+            break;
+	case 16:
+	 if (im.getBossLog("月制度理财", 1) >= 1) { //工资
+		im.dispose();
+		im.openNpc(9310382, 14);
+		} else {
+                im.sendOk("失败：\r\n\r\n#r1). 您是普通理财，请使用普通理财服务。");
+				im.dispose();
+            }
+            break;
+        case 0:
+           if (im.getBossLog("工资") < 1) { //工资
+            	im.gainMeso(30000000);
+				im.setBossLog("工资");
+				im.sendOk("恭喜您领取VIP服务的每日工资3000万金币.");
+				im.worldSpouseMessage(0x20,"『随身服务』 ：玩家 "+ im.getChar().getName() +" 在随身NPC里领取每日金币。");
+				im.dispose();
+            } else {
+                im.sendOk("失败：\r\n\r\n#r1). 您已经领取过，请明日再领。\r\n2). 体验版无法领取。");
+				im.dispose();
+            }
+            break;
+        case 1:
+           if (im.getBossLog("点卷") < 1) { //点卷
+            	im.gainNX(10000);
+				im.setBossLog("点卷");
+				im.sendOk("恭喜您领取点卷10000点.");
+				im.worldSpouseMessage(0x20,"『随身服务』 ：玩家 "+ im.getChar().getName() +" 在随身NPC里免费领取每日 1 万点卷。");
+				im.dispose();
+            } else {
+                im.sendOk("失败：\r\n\r\n#r1). 您已经使用，请明日再试。\r\n2). 体验版无法领取。");
+				im.dispose();
+            }
+            break;
+        case 2:
+           if (im.getPlayer().getCSPoints(1) > 100) { //会员等级
+				im.dispose();
+				im.openNpc(9310382,89);
+            } else {
+                im.sendOk("您糊弄我呢。点卷不足还点什么。最少得拥有100点卷才可以使用。");
+				im.dispose();
+            }
+            break;
+		case 7:
+           if (im.getBossLog("三倍") < 1) { //三倍
+            	im.gainItem(5211060,1,1);
+				im.setBossLog("三倍");
+				im.sendOk("恭喜您领取VIP服务的每日三倍经验卡一张.");
+				im.worldSpouseMessage(0x20,"『随身服务』 ：玩家 "+ im.getChar().getName() +" 在随身NPC里领取每日三倍经验卡。");
+				im.dispose();
+            } else {
+                im.sendOk("您已经领取过，请明日再领。");
+				im.dispose();
+            }
+            break;
+		case 8:
+           if (im.getBossLog("双爆") < 1) { //双爆
+            	im.gainItem(5360015,1,1);
+				im.setBossLog("双爆");
+				im.sendOk("恭喜您领取VIP服务的每日双倍爆率卡一张.");
+				im.worldSpouseMessage(0x20,"『随身服务』 ：玩家 "+ im.getChar().getName() +" 在随身NPC里领取每日双倍爆率卡。");
+				im.dispose();
+            } else {
+                im.sendOk("您已经领取过，请明日再领。");
+				im.dispose();
+            }
+            break;
+		case 9:
+           if (im.getBossLog("魔方") < 1) { //魔方
+            			im.gainItem(5064010,10);
+				im.gainItem(2340000,10);
+				im.gainItem(5062500,10);
+				im.gainItem(5062002,10);
+				im.setBossLog("魔方");
+				im.sendOk("恭喜您领取理财服务的每日理财道具，获得终级神奇魔方、高级神奇魔方、大师级神奇魔方、防暴卷轴、祝福卷轴x10。");
+				im.worldSpouseMessage(0x20,"『随身服务』 ：玩家 "+ im.getChar().getName() +" 在随身NPC里领取每日理财道具。");
+				im.dispose();
+            } else {
+                im.sendOk("失败：\r\n\r\n#r1). 您已经领取过，请明日再领。\r\n2). 体验版无法领取。");
+				im.dispose();
+            }
+            break;
+		case 5:
+           if (im.getBossLog("领币") < 1 && im.getSpace(4) >= 3) { //领币
+            	im.gainItem(4310108,100);
+		im.gainItem(4310036,100);
+		im.gainItem(4033943,30);
+		im.gainItem(4001006,20);
+				im.setBossLog("领币");
+				im.sendOk("恭喜您领取VIP服务的每日领取兑换币\r\n\r\n#i4310108# x 100  #i4310036# x 100  #i4033943# x 30  #i4001006# x 20.");
+				im.worldSpouseMessage(0x20,"『随身服务』 ：玩家 "+ im.getChar().getName() +" 在随身NPC里领取兑换币。");
+				im.dispose();
+            } else {
+                im.sendOk("失败：\r\n\r\n#r1). 您已经领取过，请明日再领。\r\n2). 背包位置不够");
+				im.dispose();
+            }
+            break;
+		case 11:
+		var ii = im.getItemInfo();
+           if (im.getBossLog("租借") < 1 && im.getSpace(3) >= 1) { //租借
+				im.setBossLog("租借");
+				im.gainItem(yz[chance], 1, 2 * 60 * 60 * 1000);
+				im.sendOk("租借了2小时的 #r#z"+yz[chance]+"##k 椅子");
+				im.getMap().startMapEffect("恭喜玩家 " + im.getChar().getName() + " 租借了椅子 " + ii.getName(yz[chance]) + "。", 5120008);
+				im.worldSpouseMessage(0x20,"『随身服务』 ：玩家 "+ im.getChar().getName() +" 在随身NPC里租借了椅子 " + ii.getName(yz[chance]) + " 。");
+				im.dispose();
+            } else {
+                im.sendOk("失败：\r\n\r\n#r1). 您已经租借过，请明日租借。\r\n2). 背包位置不够");
+				im.dispose();
+            }
+            break;
+		case 10:
+           if (im.getRMB() >= 260) { //会员等级
+				im.dispose();
+				im.openNpc(9900003, 25);
+            } else {
+                im.sendOk("失败：\r\n\r\n#r 检测到您当前为体验版。体验版无法进入，开通包月即可享有每天进入3次额外寻宝特权。");
+				im.dispose();
+            }
+            break;
+		case 6:
+           if (im.getPlayer().getCSPoints(1) > 1000) { //自选发型
+				//im.gainNX(-10000);
+				im.dispose();
+				im.openNpc(9900001, 10);
+            } else {
+                im.sendOk("点卷不足1000，你瞧啥。");
+				im.dispose();
+            }
+            break;
+		case 3:
+           if (im.getMeso() > 10000) { //换取戒指
+				im.dispose();
+				im.openNpc(9310382, 11);
+            } else {
+                im.sendOk("金币不足1万。");
+				im.dispose();
+            }
+            break;
+			case 33:
+			if (im.getMeso() >= 2000000) {
+				im.sendGetText("消耗200万游戏币，请输入您要说的话：");
+				typed = 33;
+			} else {
+				im.sendOk("您没有200万游戏币，不能进行世界喊话。");
+				im.dispose();
+			}
+			break;
+        }
+    } else if (status == 2) {
+		if (typed == 33) {
+			im.worldSpouseMessage(0x01, "[会员喊话]"+im.getPlayer().getMedalText()+im.getChar().getName()+" : "+im.getText());
+			im.worldSpouseMessage(0x01, "[会员喊话]"+im.getPlayer().getMedalText()+im.getChar().getName()+" : "+im.getText());
+			im.worldSpouseMessage(0x01, "[会员喊话]"+im.getPlayer().getMedalText()+im.getChar().getName()+" : "+im.getText());
+			im.gainMeso(-2000000);
+			//im.dispose();
+		}
+		im.dispose();
+        }
+    }
+}
